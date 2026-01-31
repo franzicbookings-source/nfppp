@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>National Freedom Party (NFP) | South Africa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .bg-nfp-gold { background-color: #FFD700; }
+      .text-nfp-gold { color: #FFD700; }
+      .border-nfp-gold { border-color: #FFD700; }
+      .bg-nfp-orange { background-color: #FF8C00; }
+      .text-nfp-orange { color: #FF8C00; }
+      
+      .outline-text {
+        -webkit-text-stroke: 1px white;
+        color: transparent;
+      }
+
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-marquee {
+        display: inline-block;
+        animation: marquee 30s linear infinite;
+        white-space: nowrap;
+      }
+
+      /* Scroll Reveal Styles */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, opacity;
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, opacity;
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(30px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, opacity;
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        will-change: transform, opacity;
+      }
+
+      .reveal-visible {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+
+      /* Staggered Delay Utilities */
+      .delay-100 { transition-delay: 100ms; }
+      .delay-200 { transition-delay: 200ms; }
+      .delay-300 { transition-delay: 300ms; }
+      .delay-400 { transition-delay: 400ms; }
+      .delay-500 { transition-delay: 500ms; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-50 text-slate-900 overflow-x-hidden">
+    <div id="root"></div>
+    <script>
+      // Global Scroll Reveal Observer
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-visible');
+          }
+        });
+      }, observerOptions);
+
+      // Re-run observer when content changes (useful for SPA navigation)
+      const initObserver = () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        revealElements.forEach(el => observer.observe(el));
+      };
+
+      // Initial run
+      window.addEventListener('load', initObserver);
+      
+      // Monitor for DOM changes (navigation in React)
+      const domObserver = new MutationObserver(() => {
+        initObserver();
+      });
+      domObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
+</html>
